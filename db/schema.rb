@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_21_112206) do
+ActiveRecord::Schema.define(version: 2020_04_22_233302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "template_text"
+    t.string "user_attributes", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_notifications", force: :cascade do |t|
+    t.boolean "seen"
+    t.bigint "notification_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notification_id"], name: "index_user_notifications_on_notification_id"
+    t.index ["user_id"], name: "index_user_notifications_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -24,4 +41,6 @@ ActiveRecord::Schema.define(version: 2020_04_21_112206) do
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 
+  add_foreign_key "user_notifications", "notifications"
+  add_foreign_key "user_notifications", "users"
 end

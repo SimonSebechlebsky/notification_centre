@@ -20,7 +20,7 @@ class ApplicationController < ActionController::API
 
   def admin_only
     unless @current_user.admin
-      render  json: {message: "You don't have sufficient permissions to acces this route"}, status: :forbidden
+      render  json: {message: "You don't have sufficient permissions to access this route"}, status: :forbidden
     end
   end
 end
