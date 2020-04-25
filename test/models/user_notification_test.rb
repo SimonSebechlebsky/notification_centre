@@ -1,8 +1,7 @@
 require 'test_helper'
 
 class UserNotificationTest < ActiveSupport::TestCase
-  test "Unkown user attribute" do
-
+  test "the truth" do
     assert true
   end
 end

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user
-  before_action :admin_only
+  before_action :admin_only, only: [:index, :destroy]
 
   def index
     limit = params['limit'] || 50
@@ -14,4 +14,8 @@ class UsersController < ApplicationController
     render json: user.destroy
   end
 
+  def my_notifications
+    notifications = ActiveModel::Serializer::CollectionSerializer.new(@current_user.user_notifications)
+    render json: {notifications: notifications}
+  end
 end

@@ -1,0 +1,23 @@
+basic_user_welcome:
+  id: 1
+  seen: false
+  user_id: 2
+  notification_id : 1
+
+basic_user_loyalty:
+  id: 2
+  seen: true
+  user_id: 2
+  notification_id : 2
+
+admin_welcome:
+  id: 3
+  seen: false
+  user_id: 1
+  notification_id : 2
+
+adminloyalty:
+  id: 4
+  seen: true
+  user_id: 1
+  notification_id : 1

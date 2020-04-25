@@ -8,4 +8,6 @@ class UserTest < ActiveSupport::TestCase
     assert_equal user2.errors[:name], ['has already been taken']
   end
 
+
+
 end

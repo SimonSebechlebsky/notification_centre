@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   resources :notifications
   resources :users, only: [:index, :destroy]
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get '/my_notifications', to: 'users#my_notifications'
+  resources :user_notifications, only: [:index, :create]
+  get '/user_notification/:id/seen', to: 'user_notifications#mark_as_seen'
 end

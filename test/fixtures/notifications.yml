@@ -1,0 +1,9 @@
+welcome:
+  id: 1
+  template_text: "Hello %s, welcome to Yova!"
+  user_attributes: "[\"name\"]"
+
+loyalty:
+  id: 2
+  template_text: "Hello, %s, you joined exactly one year ago at %s, here's a free 100$ gift card gift for your loyalty: tiny.cc/iqjmnz"
+  user_attributes: "[\"name\", \"created_at\"]"

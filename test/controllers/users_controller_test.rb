@@ -24,4 +24,10 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_equal users[0].keys.sort, %w[id name created_at updated_at admin].sort
   end
 
+  test "should get current user notifications" do
+    auth_headers = {"Authorization" => "Basic #{Base64.encode64('BasicUser:basicpassword')}"}
+    get '/my_notifications', as: :json, headers: auth_headers
+    assert_equal json_response['notifications'][0]['text'], 'Hello BasicUser, welcome to Yova!'
+  end
+
 end
