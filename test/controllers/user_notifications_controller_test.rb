@@ -6,7 +6,7 @@ class UserNotificationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should mark notification as seen" do
-    get "/user_notification/3/seen", as: :json, headers: @auth_headers
+    post "/user_notifications/3/seen", as: :json, headers: @auth_headers
     assert UserNotification.find(3).seen
     assert_response 200
   end

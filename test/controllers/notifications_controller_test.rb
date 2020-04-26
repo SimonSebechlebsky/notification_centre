@@ -6,7 +6,7 @@ class NotificationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get notifications_url, as: :json
+    get notifications_url, as: :json, headers: @auth_headers
     assert_response :success
   end
 
