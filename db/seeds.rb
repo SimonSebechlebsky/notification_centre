@@ -6,12 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Notification.create(
-    id: 1,
+ActiveRecord::Base.connection.tables.each do |t|
+  ActiveRecord::Base.connection.reset_pk_sequence!(t)
+end
+
+notification1 = Notification.create(
     template_text: "Hello %s, welcome to Yova!",
     user_attributes: ["name"])
-Notification.create(
-    id: 2,
+notification2 = Notification.create(
     template_text: "Hello, %s, you joined exactly one year ago at %s, here's a free 100$ gift card gift for your loyalty: tiny.cc/iqjmnz",
     user_attributes: ["name", "created_at"])
 
@@ -19,12 +21,12 @@ Notification.create(
   user = User.create(name: Faker::Name.unique.name.gsub(/\s+/, ""), password: 'muchsafeverysecret')
   UserNotification.create(
       user_id: user.id,
-      notification_id: 1,
+      notification_id: notification1.id,
       seen: false
   )
   UserNotification.create(
       user_id: user.id,
-      notification_id: 2,
+      notification_id: notification2.id,
       seen: false
   )
 end

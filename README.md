@@ -24,6 +24,8 @@ Admin credentials are:
     pwd: `letmein` 
 (`Authorization: Basic YWRtaW46bGV0bWVpbg==`)
 
+Admin can list users at GET `/users`
+
 ### Notifications
 Notification is more like a notification template (That would actually be probably better name), 
 that looks like this:
@@ -42,7 +44,7 @@ When it is instanced for a user, all `%s` in `template_text` are replaced by
 `user_attributes` which are applied to a particular user. Currently it can be only "name" or "created_at", 
 but it's easily extendible.
 
-Complete CRUD routes are available for notifications accesible only by admin users.
+Complete CRUD routes are available for notifications accesible only by admin users. (The typical rails routes)
 
 
 ### User notifications
@@ -70,5 +72,5 @@ User notifications routes:
     - sort_by - user attribute by which to sort
     - sort_order - asc or desc
     - limit
- - POST `user_notification/<id>/seen` - marks notification as seen - the user notification has to belong to the current authenticated user
+ - POST `user_notifications/<id>/seen` - marks notification as seen - the user notification has to belong to the current authenticated user
  - POST `user_notifications?user_id=<user_id>&notification_id=<notification_id>` - Creates instance of notification for particular user

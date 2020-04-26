@@ -5,23 +5,23 @@ class UserNotificationsController < ApplicationController
   def index
     user_notifications = UserNotification.all
 
-    if params.include? :seen
+    if params.has_key? :seen
       user_notifications = user_notifications.seen params[:seen]
     end
 
-    if params.include? :user_ids
+    if params.has_key? :user_ids
       user_notifications = user_notifications.where user_id: params[:user_ids].split(',')
     end
 
-    if params.include? :sort_by
+    if params.has_key? :sort_by
       sort_order = 'asc'
-      if params.include? :sort_order
+      if params.has_key? :sort_order
         sort_order = params[:sort_order]
       end
       user_notifications = user_notifications.order(params[:sort_by] => sort_order)
     end
 
-    if params.include? :limit
+    if params.has_key? :limit
       user_notifications = user_notifications.limit(params[:limit])
     end
 
